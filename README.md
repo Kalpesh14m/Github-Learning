@@ -184,6 +184,32 @@ The `message` tells us that there have been three files added to the current bra
 
 ![](https://user-images.githubusercontent.com/25608527/97918899-de708b80-1d7c-11eb-9aa4-fc55da9c0d13.jpg)
 
+There will be times when you'll regret committing to a repository. Let's say you've modified ten files, but committed only nine. How can you add that remaining file to the last commit? And how can you modify a file if you've already committed it? There are two ways out. First, you can undo the commit:
+
+`git reset --soft HEAD^`
+
+As you may recall, the **"reset"** command is the opposite of the **"add"** command. This time, **"reset"** tells Git to undo the commit. What follows "reset" is the **"--soft"** option. The "--soft" option means that the commit is canceled and moved before HEAD. You can now add another file to the staging area and commit, or you can amend files and commit them.
+
+To understand what that "HEAD" thing represents, recall that we work in branches. Currently we're in the master branch, and HEAD points to this master branch. When we switch to a different branch later, HEAD will point to that different branch. HEAD is just a pointer to a branch:
+
+![](https://user-images.githubusercontent.com/25608527/97919722-483d6500-1d7e-11eb-9b01-c1a3f31690fe.png)
+
+What you see in the image is that each dot represents a separate commit, and the latest commit is at the top of the branch (HEAD). In the command "`git reset --soft HEAD^`" the last character **"^"** represents the last commit. We can read "`git reset --soft HEAD^`" as **"Undo the last commit in the current branch and move HEAD back by one commit."**
+
+Instead of resetting the HEAD and undoing the last commit, we can rectify a commit by using the "`--amend`" option when committing to a repository. Just add the remaining file to the staging area and then commit:
+
+```
+git add file-i-forgot-to-add.html
+
+git commit --amend -m "Add the remaining file"
+```
+
+The "`--amend`" option lets you amend the last commit by adding a new file (or multiple files). Using the "--amend" option, you can also overwrite the message of your last commit.
+
+**Think of this command in this way:** you took out the top stack of papers from the drawer and "amended" them by simply unstapling the bunch of papers, adding another paper, file-i-forgot-to-add.html, on top and rewriting the message on the "commit" paper.
+
+---
+
 `git remote add origin <Git repository URL>`
 
 `git push -u origin master`
