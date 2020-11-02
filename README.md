@@ -48,28 +48,93 @@ If you've already run git init on a project directory and it contains a .git sub
 
 `git init`
 
+![](https://user-images.githubusercontent.com/25608527/97916085-7e77e600-1d78-11eb-9113-0318ec40e222.png)
+
 ---
 
-### Check status
+### Tracking Files with Git
 
 You'll run the command "git status" quite often. It's the same as calling a bank administrator to check if your things arrived or if anything has been moved to a different vault.
 
 `git status`
 
+Now we can answer the question, "Why does Git need to track files?" Before we commit any files to a local repository, Git wants to know what those files are. Git only knows what to commit when it's tracking files.
+
+If there are no files in the root directory yet, Git shows that there's **nothing to commit**. Our safe deposit box (repository) is empty. To do anything further, we need to populate the root folder with at least one file. We've added my-new-file.txt to the root directory. Now we can move on to the next step.
+
+![](https://user-images.githubusercontent.com/25608527/97916083-7ddf4f80-1d78-11eb-8c82-c355e42f519a.png)
+
+When you run "git status" once more **(assuming you've added a file to the project's root directory)**, you'll get a different output. **Note:** the ___"Untracked files"___ message with the file "my_new_file.txt". Git conveniently informs us that we've added a new file to the project. But that isn't enough for Git. As Git tells us, we need to track "my_new_file.txt". In other words, we need to add "my_new_file.txt" to the staging area.
+
+![](https://user-images.githubusercontent.com/25608527/97916079-7cae2280-1d78-11eb-8bd5-456dfb041f8b.png)
+
 ---
 
 ### Add project/new changes in staging area
 
-The `git add` command adds new or changed files in your working directory to the ***Git staging area***. 
-`git add` is an important command - without it, no git commit would ever do anything. Sometimes, `git add` can have a reputation for being an unnecessary step in development. But in reality, `git add` is an important and powerful tool. `git add` allows you to shape history without changing how you work.
+The `git add` command adds new or changed files in your working directory to the ***Git staging area***. `git add` is an important command - without it, no git commit would ever do anything. Sometimes, `git add` can have a reputation for being an unnecessary step in development. But in reality, `git add` is an important and powerful tool. `git add` allows you to shape history without changing how you work.
 
-`git add `
+Let's say you want to move some of your valuable effects to a lock box, but you don't know yet what things you'll put there. For now, you just gather things into a basket. You can take things out of the basket if you decide that they aren't valuable enough to store in a lock box, and you can add things to the basket as you wish. With Git, this basket is the staging area. When you move files to the staging area in Git, you actually gather and prepare files for Git before committing them to the local repository.
 
-`git add .` stages new files and modifications, without deletions. The important point about git add . is that it looks at the working tree and adds all those paths to the staged changes if they are either changed or are new and not ignored, it does not stage any 'rm' actions.
+**`git add <file-name>`**
 
-`git add -u` stages modifications and deletions, without new files. It looks at all the already tracked files and stages the changes to those files if they are different or if they have been removed. It does not add any new files, it only stages changes to already tracked files.
+`git add my_new_file.txt`
 
-`git add -A` stages all changes.  It is a handy shortcut for doing both of those.
+That's it; you've added a file to the staging area with the "add" command. Don't forget to pass a filename to this command so Git knows which file to track.
+
+But what has this "add" command actually done? Let's view an updated status (we promised that you'll often run "git status", didn't we?):
+
+![](https://user-images.githubusercontent.com/25608527/97917163-14f8d700-1d7a-11eb-8101-02ebf7a87224.png)
+
+The status has changed! Git knows that there's a newly created file in your basket (the staging area), and is ready to commit the file.
+
+What if you create or change several files? With a basket as your staging area, you have to put things into the basket one by one. Committing files to the repository individually isn't convenient. What Git can do is provide alternatives to the "git add <file-name>" command.
+
+Let's assume you've added another three files to the root directory: my-file.ts, another-file.js, and new_file.rb. Now you want to add all of them to the staging area. Instead of adding these files separately, we can add them all together:
+
+`git add my-file.ts another-file.js new_file.rb`
+
+![](https://user-images.githubusercontent.com/25608527/97917157-13c7aa00-1d7a-11eb-9c07-9396712172eb.png)
+
+All you need to do is type file names separated by spaces following the "add" command. When you run "git status" once more to see what has changed, Git will output a new message listing all the files you've added:
+
+Adding several files to the staging area in one go is much more convenient! But hold on a second. What if the project grows enormously and you have to add more than three files? How can we add a dozen files (or dozens of files) in one go? Git accepts the challenge and offers the following solution:
+
+`git add .`
+
+![](https://user-images.githubusercontent.com/25608527/97917262-3bb70d80-1d7a-11eb-98e2-44cbe67633bf.png)
+
+Instead of listing file names one by one, you can use a period – yes, a simple dot – to select all files under the current directory. Git will grab all new or changed files and shove them into the basket (the staging area) all at once. That's even more convenient, isn't it? But Git can do even better.
+
+There's a problem with the "`git add .`" command. Since we're currently working in the root directory, "`git add .`" **will only add files located in the root directory. But the root directory may contain many other directories with files**. How can we add files from those other directories plus the files in the root directory to the staging area? Git offers the command below:
+
+`git add --all`
+
+The option "--all" tells Git: "Find all new and updated files everywhere throughout the project and add them to the staging area." Note that you can also use the option "-A" instead of "--all". Thanks to this simple option, "-A" or "--all", the workflow is greatly simplified.
+
+**Remember** when we told you that you can take things out of your imaginary basket? Git can also take things out of its basket by removing files from the staging area. To remove files from the staging area, use the following command:
+
+`git rm --cached my-file.ts`
+
+![](https://user-images.githubusercontent.com/25608527/97917779-052dc280-1d7b-11eb-8224-800cd8f9e66e.png)
+
+In our example, we specified the command **"rm"**, which stands for remove. The **"--cached"** option indicates files in the staging area. Finally, we pass a file that we want to unstage. Git will output the following message for us:
+
+`rm my_file.ts`
+
+Git is no longer tracking my-file.ts. In this simple way, you can untrack files if necessary. As an alternative to `"rm --cached <filename>"`, you can use the `"reset"` command:
+
+`git reset another-file.js`
+
+![](https://user-images.githubusercontent.com/25608527/97917775-0363ff00-1d7b-11eb-998c-c39faeac1a99.png)
+
+**You can consider "reset" as the opposite of "add".**
+
+- `git add .` stages new files and modifications, without deletions. The important point about git add . is that it looks at the working tree and adds all those paths to the staged changes if they are either changed or are new and not ignored, it does not stage any 'rm' actions.
+
+- `git add -u` stages modifications and deletions, without new files. It looks at all the already tracked files and stages the changes to those files if they are different or if they have been removed. It does not add any new files, it only stages changes to already tracked files.
+
+- `git add -A` stages all changes.  It is a handy shortcut for doing both of those.
 
 ### Git Version 1.x:
 
