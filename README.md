@@ -1,23 +1,30 @@
-## Learn Github in easy way
+# Learn Github in easy way
+
+![](https://user-images.githubusercontent.com/25608527/97915332-55a32100-1d77-11eb-9afa-77a68f4d8bf5.png)
+
+## ![Learn Github](https://guides.github.com/activities/hello-world/)
+## ![Github official site](https://git-scm.com/book/en/v2)
+
+---
 
 ### Install Gitbash in Linux
-##### ![Learn Github](https://guides.github.com/activities/hello-world/)
 
-#### ![Github official site](https://git-scm.com/book/en/v2)
+`sudo apt install git`
 
-```
-sudo apt install git 
-```
+---
 
 ### Configuration/ Gitbash setup
 
 #### --local
+
 By default, git config will write to a local level if no configuration option is passed. Local level configuration is applied to the context repository git config gets invoked in. Local configuration values are stored in a file that can be found in the repo's .git directory: .git/config
 
 #### --global
+
 Global level configuration is user-specific, meaning it is applied to an operating system user. Global configuration values are stored in a file that is located in a user's home directory. ~ /.gitconfig on unix systems and C:\Users\\.gitconfig on windows
 
 #### --system
+
 System-level configuration is applied across an entire machine. This covers all users on an operating system and all repos. The system level configuration file lives in a gitconfig file off the system root path. $(prefix)/etc/gitconfig on unix systems. On windows this file can be found at C:\Documents and Settings\All Users\Application Data\Git\config on Windows XP, and in C:\ProgramData\Git\config on Windows Vista and newer.
 
 Thus the order of priority for configuration levels is: local, global, system. 
@@ -26,33 +33,59 @@ This means when looking for a configuration value, Git will start at the local l
 ```
 git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
+git config --global color.ui true
+
+git config --list
 ```
+---
 
 ### Create new .git repository
+
 Compared to SVN, the git init command is an incredibly easy way to create new version-controlled projects. Git doesn’t require you to create a repository, import files, and check out a working copy. Additionally, Git does not require any pre-existing server or admin privileges. All you have to do is cd into your project subdirectory and run git init, and you'll have a fully functional Git repository. Transform the current directory into a Git repository. 
+
 This adds a .git subdirectory to the current directory and makes it possible to start recording revisions of the project. Create an empty Git repository in the specified directory. Running this command will create a new subdirectory called containing nothing but the .git subdirectory.
 If you've already run git init on a project directory and it contains a .git subdirectory, you can safely run git init again on the same project directory. It will not override an existing .git configuration.
-```
-git init
-```
+
+`git init`
+
+---
+
+### Check status
+
+You'll run the command "git status" quite often. It's the same as calling a bank administrator to check if your things arrived or if anything has been moved to a different vault.
+
+`git status`
+
+---
+
 ### Add project/new changes in staging area
+
 The `git add` command adds new or changed files in your working directory to the ***Git staging area***. 
 `git add` is an important command - without it, no git commit would ever do anything. Sometimes, `git add` can have a reputation for being an unnecessary step in development. But in reality, `git add` is an important and powerful tool. `git add` allows you to shape history without changing how you work.
-```
-git add .
-```
 
-```
-git commit -m "Commit"
-```
+`git add `
 
-```
-git remote add origin <Git repository URL>      //
-```
+`git add .` stages new files and modifications, without deletions. The important point about git add . is that it looks at the working tree and adds all those paths to the staged changes if they are either changed or are new and not ignored, it does not stage any 'rm' actions.
 
-```
-git push -u origin master
-```
+`git add -u` stages modifications and deletions, without new files. It looks at all the already tracked files and stages the changes to those files if they are different or if they have been removed. It does not add any new files, it only stages changes to already tracked files.
+
+`git add -A` stages all changes.  It is a handy shortcut for doing both of those.
+
+### Git Version 1.x:
+
+![](https://user-images.githubusercontent.com/25608527/97915159-ffce7900-1d76-11eb-9f93-ee714c1ef058.png)
+
+### Git Version 2.x:
+
+![](https://user-images.githubusercontent.com/25608527/97915156-fe9d4c00-1d76-11eb-8ae8-9890d50d51ce.png)
+
+---
+
+`git commit -m "Commit"`
+
+`git remote add origin <Git repository URL>`
+
+`git push -u origin master`
 
 // Clone existing project
 6. git clone <branch-path>
