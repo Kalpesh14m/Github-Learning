@@ -6,6 +6,15 @@
 ## ![Github official site](https://git-scm.com/book/en/v2)
 
 ---
+## How Github Works:
+
+![](https://user-images.githubusercontent.com/25608527/97918865-d87aaa80-1d7c-11eb-9da1-16b17b766e1a.jpg)
+
+![](https://user-images.githubusercontent.com/25608527/97918875-d9abd780-1d7c-11eb-9f9f-c8502d74d7be.jpg)
+
+![](https://user-images.githubusercontent.com/25608527/97918878-da446e00-1d7c-11eb-991a-7559f2c726a2.jpg)
+
+---
 
 ### Install Gitbash in Linux
 
@@ -41,6 +50,8 @@ git config --list
 
 ### Create new .git repository
 
+![](https://user-images.githubusercontent.com/25608527/97918882-db759b00-1d7c-11eb-9b81-58994eed6410.jpg)
+
 Compared to SVN, the git init command is an incredibly easy way to create new version-controlled projects. Git doesn’t require you to create a repository, import files, and check out a working copy. Additionally, Git does not require any pre-existing server or admin privileges. All you have to do is cd into your project subdirectory and run git init, and you'll have a fully functional Git repository. Transform the current directory into a Git repository. 
 
 This adds a .git subdirectory to the current directory and makes it possible to start recording revisions of the project. Create an empty Git repository in the specified directory. Running this command will create a new subdirectory called containing nothing but the .git subdirectory.
@@ -71,6 +82,8 @@ When you run "git status" once more **(assuming you've added a file to the proje
 ---
 
 ### Add project/new changes in staging area
+
+![](https://user-images.githubusercontent.com/25608527/97918887-db759b00-1d7c-11eb-82f0-bf3b76c3f0e8.jpg)
 
 The `git add` command adds new or changed files in your working directory to the ***Git staging area***. `git add` is an important command - without it, no git commit would ever do anything. Sometimes, `git add` can have a reputation for being an unnecessary step in development. But in reality, `git add` is an important and powerful tool. `git add` allows you to shape history without changing how you work.
 
@@ -145,8 +158,31 @@ Git is no longer tracking my-file.ts. In this simple way, you can untrack files 
 ![](https://user-images.githubusercontent.com/25608527/97915156-fe9d4c00-1d76-11eb-8ae8-9890d50d51ce.png)
 
 ---
+### Committing Changes to Git
 
-`git commit -m "Commit"`
+![](https://user-images.githubusercontent.com/25608527/97918890-dca6c800-1d7c-11eb-9676-e51c97da77fa.jpg)
+
+Let's start with a quick overview of committing to the Git repository. By now, you should have at least one file tracked by Git (we have three). As we mentioned, tracked files aren't located in the repository yet. We have to commit them: we need to carry our basket with stuff to the lock box. There are several useful Git commands to do (almost) the same: move (commit) files from the staging area (an imaginary basket) to the repository (a lock box).
+
+There's nothing difficult about committing to a repository. Just run the following command:
+
+`git commit -m "Add three files"`
+
+To commit to a repository, use the **"commit"** command. Next, pass the "commit" command the **"-m"** option, which stands for "message". Lastly, type in your **commit message**. We wrote "Add three files" for our example, but it's **recommended that you write more meaningful messages** like "Add admin panel" or "Update admin panel". 
+
+![](https://user-images.githubusercontent.com/25608527/97918894-dd3f5e80-1d7c-11eb-99d4-3bcf48ce17ba.jpg)
+
+**Note that** we didn't use the past tense! _A commit message must tell what your commit does_ – adds or removes files, updates app features, and so on.
+
+Once we've run "git commit -m 'Add three files'", we get the following output:
+
+![](https://user-images.githubusercontent.com/25608527/97918150-a74daa80-1d7b-11eb-8a0b-59485fc1f2f4.png)
+
+The `message` tells us that there have been three files added to the current branch, which in our example is the master or the main branch. The `"create mode 100644"` message tells us that these files are regular non-executable files. The `"0 insertions(+)" and "0 deletions(-)"` messages mean we haven't added any new code or removed any code from the files. We actually don't need this information; it only confirms that the commit was successful.
+
+![](https://user-images.githubusercontent.com/25608527/97918898-ddd7f500-1d7c-11eb-85ea-dd6106941cc4.jpg)
+
+![](https://user-images.githubusercontent.com/25608527/97918899-de708b80-1d7c-11eb-9aa4-fc55da9c0d13.jpg)
 
 `git remote add origin <Git repository URL>`
 
