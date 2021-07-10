@@ -1,9 +1,14 @@
-# Learn Github in easy way
+# Learn Github in easy way 
+
+**Official Account:** <a href="https://www.instagram.com/codedictator/" rel="some text">![](https://github.com/Kalpesh14m/README-Templates/blob/main/Icons/Instagram.svg)</a> 
+
+**Personal Account:** <a href="https://www.instagram.com/devil_bunnyy/" rel="some text">![](https://github.com/Kalpesh14m/README-Templates/blob/main/Icons/Instagram.svg)</a> 
+
+---
 
 ![](https://user-images.githubusercontent.com/25608527/97915332-55a32100-1d77-11eb-9afa-77a68f4d8bf5.png)
 
-## ![Learn Github](https://guides.github.com/activities/hello-world/)
-## ![Github official site](https://git-scm.com/book/en/v2)
+## [Github official site](https://git-scm.com/book/en/v2)
 
 ---
 ## How Github Works:
